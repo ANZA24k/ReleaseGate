@@ -1,0 +1,379 @@
+{
+  "observedAt": "2026-10-08T05:07:32.745Z",
+  "network": "studionet",
+  "chainId": 61999,
+  "contractAddress": "0x8E28e9bb998A1E0158EF49C0d5151d8136F16130",
+  "sourceMatches": true,
+  "sourceSha256": "682e6ca645a9bda8aa7ea445319a12742fa9608fb942021741f2c9a7f92aa99a",
+  "project": {
+    "active": true,
+    "created_at": 1791435526,
+    "name": "ReleaseGate synthetic pilot",
+    "owner": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+    "policy": {
+      "criteria": [
+        {
+          "id": "auth",
+          "mandatory": true,
+          "name": "Authentication regressions",
+          "requirement": "Synthetic test evidence must explicitly demonstrate that expired sessions and cross-tenant access are rejected, with no failing tests in either case.",
+          "weight": 1
+        },
+        {
+          "id": "migration",
+          "mandatory": true,
+          "name": "Breaking database migration",
+          "requirement": "Synthetic migration instructions must explain the users.tenant_id NOT NULL change, a backup step, backfill before applying the constraint, and a rollback procedure.",
+          "weight": 1
+        },
+        {
+          "id": "compatibility",
+          "mandatory": true,
+          "name": "Breaking API documentation",
+          "requirement": "Synthetic release notes must identify the removal of /v1/session, its /v2/session replacement, and the minimum compatible client version 2.0.",
+          "weight": 1
+        }
+      ],
+      "optional_threshold_bps": 0
+    },
+    "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+    "project_id": "p1",
+    "release_ids": [
+      "r1",
+      "r2"
+    ],
+    "repository": "ANZA24k/ReleaseGate"
+  },
+  "releases": [
+    {
+      "release": {
+        "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+        "created_at": 1791435689,
+        "creator": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+        "finalized": false,
+        "known_evidence_hashes": [
+          "6b848ce21c2ec06aae33360e0c0944d15a7dadbfa717631fab5205bd079f9e2e",
+          "8dfbf484a609e6b944a5380a113def386a5ad76c2a90fd141787edf3682f35fc"
+        ],
+        "latest_revision": 2,
+        "manifests": [
+          {
+            "sha256": "a68578b0646840b37b92e21ffff016aa8463835e2a07325aa8906589b46e4e71",
+            "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/96816ae9c1effd87e56210b27e42b166455b5163/fixtures/manifests/approved.json"
+          },
+          {
+            "sha256": "3d07dbcbca727d9530dee8bcda2394ded68872ebcfb8b465f2fb56c08617fabe",
+            "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/96816ae9c1effd87e56210b27e42b166455b5163/fixtures/manifests/supplement.json"
+          }
+        ],
+        "owner_recheck": false,
+        "project_id": "p1",
+        "release_id": "r1",
+        "repository": "ANZA24k/ReleaseGate",
+        "review_deadline": 1791436700,
+        "reviewer_recheck": true,
+        "status": "APPROVED",
+        "version": "demo-approved-1"
+      },
+      "history": [
+        {
+          "actor": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+          "criteria": [
+            {
+              "evidence_labels": [
+                "approved"
+              ],
+              "id": "auth",
+              "outcome": "PASS",
+              "reason": "Evidence explicitly states AUTH-EXPIRED: PASS (HTTP 401, zero failing cases) and AUTH-TENANT: PASS (HTTP 403, zero failing cases). Both expired session rejection and cross-tenant access rejection are demonstrated with no failures."
+            },
+            {
+              "evidence_labels": [
+                "approved"
+              ],
+              "id": "migration",
+              "outcome": "PASS",
+              "reason": "Evidence explains the users.tenant_id NOT NULL change, a backup step with restore verification, backfill before applying the constraint, validation of no NULL values, and a rollback procedure covering constraint removal and backup restore."
+            },
+            {
+              "evidence_labels": [
+                "approved"
+              ],
+              "id": "compatibility",
+              "outcome": "PASS",
+              "reason": "Evidence identifies removal of /v1/session, its /v2/session replacement, and states minimum compatible client version is 2.0, with an explicit upgrade requirement for older clients."
+            }
+          ],
+          "evaluated_evidence": [
+            {
+              "label": "approved",
+              "sha256": "6b848ce21c2ec06aae33360e0c0944d15a7dadbfa717631fab5205bd079f9e2e",
+              "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/approved.md"
+            }
+          ],
+          "evidence_status": "VERIFIED",
+          "kind": "INITIAL",
+          "manifest_hashes": [
+            "a68578b0646840b37b92e21ffff016aa8463835e2a07325aa8906589b46e4e71"
+          ],
+          "optional_score_bps": 10000,
+          "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+          "revision": 1,
+          "status": "APPROVED",
+          "supersedes_revision": 0,
+          "timestamp": 1791435768
+        },
+        {
+          "actor": "0x5b05e70A2C3d526ab9a1ee66CfB109D5ca6aAcfa",
+          "criteria": [
+            {
+              "evidence_labels": [
+                "approved",
+                "supplement"
+              ],
+              "id": "auth",
+              "outcome": "PASS",
+              "reason": "Explicitly states expired sessions rejected (401) and cross-tenant access rejected (403), with zero failing cases for both synthetic tests."
+            },
+            {
+              "evidence_labels": [
+                "approved",
+                "supplement"
+              ],
+              "id": "migration",
+              "outcome": "PASS",
+              "reason": "Explicitly explains NOT NULL change, backup step, backfill before constraint, validation of no NULLs, and rollback procedure with backup restoration."
+            },
+            {
+              "evidence_labels": [
+                "approved",
+                "supplement"
+              ],
+              "id": "compatibility",
+              "outcome": "PASS",
+              "reason": "Explicitly identifies removal of /v1/session, replacement with /v2/session, and minimum compatible client version 2.0."
+            }
+          ],
+          "evaluated_evidence": [
+            {
+              "label": "approved",
+              "sha256": "6b848ce21c2ec06aae33360e0c0944d15a7dadbfa717631fab5205bd079f9e2e",
+              "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/approved.md"
+            },
+            {
+              "label": "supplement",
+              "sha256": "8dfbf484a609e6b944a5380a113def386a5ad76c2a90fd141787edf3682f35fc",
+              "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/supplement.md"
+            }
+          ],
+          "evidence_status": "VERIFIED",
+          "kind": "REVIEWER_RECHECK",
+          "manifest_hashes": [
+            "a68578b0646840b37b92e21ffff016aa8463835e2a07325aa8906589b46e4e71",
+            "3d07dbcbca727d9530dee8bcda2394ded68872ebcfb8b465f2fb56c08617fabe"
+          ],
+          "optional_score_bps": 10000,
+          "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+          "revision": 2,
+          "status": "APPROVED",
+          "supersedes_revision": 1,
+          "timestamp": 1791435960
+        }
+      ]
+    },
+    {
+      "release": {
+        "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+        "created_at": 1791435724,
+        "creator": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+        "finalized": false,
+        "known_evidence_hashes": [
+          "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c"
+        ],
+        "latest_revision": 1,
+        "manifests": [
+          {
+            "sha256": "e44a9c78e61ce084834cbc136c2733b6b2c459644fc4a69350e53826fa45272a",
+            "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/96816ae9c1effd87e56210b27e42b166455b5163/fixtures/manifests/blocked.json"
+          }
+        ],
+        "owner_recheck": false,
+        "project_id": "p1",
+        "release_id": "r2",
+        "repository": "ANZA24k/ReleaseGate",
+        "review_deadline": 1791436700,
+        "reviewer_recheck": false,
+        "status": "BLOCKED",
+        "version": "demo-blocked-1"
+      },
+      "history": [
+        {
+          "actor": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+          "criteria": [
+            {
+              "evidence_labels": [
+                "blocked"
+              ],
+              "id": "auth",
+              "outcome": "FAIL",
+              "reason": "Evidence explicitly states AUTH-TENANT FAIL: a tenant A session received tenant B data with HTTP 200. Cross-tenant access was not rejected. One failing regression is unresolved. Policy requires no failing tests in either case."
+            },
+            {
+              "evidence_labels": [
+                "blocked"
+              ],
+              "id": "migration",
+              "outcome": "PASS",
+              "reason": "Evidence explains the users.tenant_id NOT NULL change, a backup step, backfill before applying the constraint, and a rollback procedure (stop writes, remove constraint, restore backup). All four required elements are present."
+            },
+            {
+              "evidence_labels": [
+                "blocked"
+              ],
+              "id": "compatibility",
+              "outcome": "PASS",
+              "reason": "Evidence states /v1/session is removed, /v2/session replaces it, and minimum compatible client version is 2.0. All three required elements are explicitly identified."
+            }
+          ],
+          "evaluated_evidence": [
+            {
+              "label": "blocked",
+              "sha256": "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c",
+              "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/blocked.md"
+            }
+          ],
+          "evidence_status": "VERIFIED",
+          "kind": "INITIAL",
+          "manifest_hashes": [
+            "e44a9c78e61ce084834cbc136c2733b6b2c459644fc4a69350e53826fa45272a"
+          ],
+          "optional_score_bps": 10000,
+          "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+          "revision": 1,
+          "status": "BLOCKED",
+          "supersedes_revision": 0,
+          "timestamp": 1791435809
+        }
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "action": "Deployment",
+      "transaction": "0x6b7868004deee62b42edfdf813564588280caa2f0e4675009b3951f82fdf2659",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x36728d2a123aB444E603EE5b2ad17d18Bb193557": "idle",
+        "0x4404Fb70d490c935758146f42A73DC850FF95C71": "agree",
+        "0x76c25AFC12c75485703cCFfd0083AA6201455B25": "agree",
+        "0xBBb165E4c9d73a1493D363280f7067Cd07891dBE": "idle",
+        "0xDB1c35c1f05d885999b8f13e5735307BcC16Be88": "agree"
+      }
+    },
+    {
+      "action": "Register project p1",
+      "transaction": "0xf4266a14c34ca8997621ca0b499575934c012b18c1beb0913e2da4164a4af8a1",
+      "observedStatus": "FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x03D58A4DeF6fDFc032A56374785a5F571D07Bc11": "idle",
+        "0x772ffCd1dF6Cc566eC4b8d3f4F4f8eBbb6B36C84": "agree",
+        "0xBBb165E4c9d73a1493D363280f7067Cd07891dBE": "agree",
+        "0xacc2459F341D7a887bcA8FAA62F1EC9378d4Bc67": "agree",
+        "0xec2Fb79cd12255Eb34886CEd7332f27B98DEe658": "idle"
+      }
+    },
+    {
+      "action": "Submit compliant r1",
+      "releaseId": "r1",
+      "transaction": "0x1c504b48d49cb4678b80cbdb3014a9d2154ae095c24179ad69cdd6c2509d42b9",
+      "observedStatus": "FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x03D58A4DeF6fDFc032A56374785a5F571D07Bc11": "agree",
+        "0x36728d2a123aB444E603EE5b2ad17d18Bb193557": "idle",
+        "0x4aba638Cf0Cf5249437AaD968fC69dde46ae6BAC": "agree",
+        "0x90402341F0B0e97b23023c0a87de957FB7148E0F": "agree",
+        "0x9ea87b28DcA2F79fe108CF06a4c13B4c876AC23d": "idle"
+      }
+    },
+    {
+      "action": "Submit failing r2",
+      "releaseId": "r2",
+      "transaction": "0x71c8ed4bbf24682e9da684221ea5d2f1c5a33f3c2f8346f547af1d8da6baff93",
+      "observedStatus": "FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x03D58A4DeF6fDFc032A56374785a5F571D07Bc11": "idle",
+        "0x3E5ee2507cc167C9925Bf10c67D7986581112024": "agree",
+        "0x4aba638Cf0Cf5249437AaD968fC69dde46ae6BAC": "agree",
+        "0x5310dcF075E0BD47d29B8ec6581F736C767f54D2": "idle",
+        "0x90402341F0B0e97b23023c0a87de957FB7148E0F": "agree"
+      }
+    },
+    {
+      "action": "Evaluate r1",
+      "releaseId": "r1",
+      "transaction": "0x83320c2a5ebd91e57319a9569f93a7b8a4403f5e0dfa088cb9267104a551e47f",
+      "observedStatus": "APPROVED · FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x4404Fb70d490c935758146f42A73DC850FF95C71": "agree",
+        "0x6737ca1d6BDF8b7C4f19143E2D55581Ca64eb7C3": "agree",
+        "0xDB1c35c1f05d885999b8f13e5735307BcC16Be88": "idle",
+        "0xacc2459F341D7a887bcA8FAA62F1EC9378d4Bc67": "idle",
+        "0xcE1d6bBB36B744536153966B4DD42276f5ADd0F8": "agree"
+      }
+    },
+    {
+      "action": "Evaluate r2",
+      "releaseId": "r2",
+      "transaction": "0x49b3daa83f60a8d2380a538d2e0eb1d8b14cdeff174ed882d1718ac020802916",
+      "observedStatus": "BLOCKED · FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x3E5ee2507cc167C9925Bf10c67D7986581112024": "agree",
+        "0x5310dcF075E0BD47d29B8ec6581F736C767f54D2": "agree",
+        "0x76c25AFC12c75485703cCFfd0083AA6201455B25": "idle",
+        "0x772ffCd1dF6Cc566eC4b8d3f4F4f8eBbb6B36C84": "agree",
+        "0xcE1d6bBB36B744536153966B4DD42276f5ADd0F8": "idle"
+      }
+    },
+    {
+      "action": "Independent reviewer recheck r1",
+      "releaseId": "r1",
+      "transaction": "0x5075af4f7a8ffdca9053a277ea61d6df643d4a68cf806540c8ad1ff5a171bfa6",
+      "observedStatus": "SUBMITTED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x36728d2a123aB444E603EE5b2ad17d18Bb193557": "idle",
+        "0x3D83ab507785b95ca5C208bEc80CCe3D5ca98100": "agree",
+        "0x3E5ee2507cc167C9925Bf10c67D7986581112024": "agree",
+        "0x76c25AFC12c75485703cCFfd0083AA6201455B25": "agree",
+        "0xec2Fb79cd12255Eb34886CEd7332f27B98DEe658": "idle"
+      }
+    }
+  ]
+}

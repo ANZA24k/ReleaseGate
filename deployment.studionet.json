@@ -2,6 +2,20 @@
   "network": "studionet",
   "chainId": 61999,
   "rpcUrl": "https://studio.genlayer.com/api",
-  "deploymentStatus": "NOT_DEPLOYED",
-  "pilot": []
+  "deploymentStatus": "FINALIZED",
+  "contractAddress": "0x8E28e9bb998A1E0158EF49C0d5151d8136F16130",
+  "deploymentTx": "0x6b7868004deee62b42edfdf813564588280caa2f0e4675009b3951f82fdf2659",
+  "sourceCommit": "9b30f7ad38de530112b9146036d5e73df2633995",
+  "sourceSha256": "682e6ca645a9bda8aa7ea445319a12742fa9608fb942021741f2c9a7f92aa99a",
+  "manifestCommit": "96816ae9c1effd87e56210b27e42b166455b5163",
+  "owner": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+  "reviewer": "0x5b05e70A2C3d526ab9a1ee66CfB109D5ca6aAcfa",
+  "pilot": [
+    {"action":"Register project p1","transaction":"0xf4266a14c34ca8997621ca0b499575934c012b18c1beb0913e2da4164a4af8a1","observedStatus":"FINALIZED"},
+    {"action":"Submit compliant r1","releaseId":"r1","transaction":"0x1c504b48d49cb4678b80cbdb3014a9d2154ae095c24179ad69cdd6c2509d42b9","observedStatus":"FINALIZED"},
+    {"action":"Submit failing r2","releaseId":"r2","transaction":"0x71c8ed4bbf24682e9da684221ea5d2f1c5a33f3c2f8346f547af1d8da6baff93","observedStatus":"FINALIZED"},
+    {"action":"Evaluate r1","releaseId":"r1","transaction":"0x83320c2a5ebd91e57319a9569f93a7b8a4403f5e0dfa088cb9267104a551e47f","observedStatus":"APPROVED · FINALIZED"},
+    {"action":"Evaluate r2","releaseId":"r2","transaction":"0x49b3daa83f60a8d2380a538d2e0eb1d8b14cdeff174ed882d1718ac020802916","observedStatus":"BLOCKED · FINALIZED"},
+    {"action":"Independent reviewer recheck r1","releaseId":"r1","transaction":"0x5075af4f7a8ffdca9053a277ea61d6df643d4a68cf806540c8ad1ff5a171bfa6","observedStatus":"APPROVED revision 2 · FINALIZED"}
+  ]
 }

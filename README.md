@@ -6,7 +6,7 @@ ReleaseGate is an evidence-bound software release approval protocol built around
 
 ## Verification status
 
-Contract deployment and public pilot have not yet been verified. No contract address or transaction is claimed at this stage. The machine-readable [deployment record](deployment.studionet.json) records only observed deployment facts. Network: **Studionet, chain ID 61999**. Public website publication is pending verification.
+The contract is **finalized on Studionet, chain ID 61999**, at [`0x8E28e9bb998A1E0158EF49C0d5151d8136F16130`](https://explorer-studio.genlayer.com/address/0x8E28e9bb998A1E0158EF49C0d5151d8136F16130). Deployed source matches the committed contract byte for byte. The real consensus pilot recorded **APPROVED** for the compliant synthetic candidate and **BLOCKED** for the candidate with an unresolved cross-tenant failure. See the machine-readable [deployment record](deployment.studionet.json) and [verification evidence](docs/VERIFICATION.md). Website publication and review-window finalization are being completed.
 
 Local direct tests use mocked web and model responses. Synthetic public fixtures describe invented scenarios and do not claim executed product tests or a security audit.
 
