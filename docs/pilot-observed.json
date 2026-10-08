@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-08T05:07:32.745Z",
+  "observedAt": "2026-10-08T05:22:58.849Z",
   "network": "studionet",
   "chainId": 61999,
   "contractAddress": "0x8E28e9bb998A1E0158EF49C0d5151d8136F16130",
@@ -50,7 +50,7 @@
         "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
         "created_at": 1791435689,
         "creator": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
-        "finalized": false,
+        "finalized": true,
         "known_evidence_hashes": [
           "6b848ce21c2ec06aae33360e0c0944d15a7dadbfa717631fab5205bd079f9e2e",
           "8dfbf484a609e6b944a5380a113def386a5ad76c2a90fd141787edf3682f35fc"
@@ -186,7 +186,7 @@
         "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
         "created_at": 1791435724,
         "creator": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
-        "finalized": false,
+        "finalized": true,
         "known_evidence_hashes": [
           "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c"
         ],
@@ -362,7 +362,7 @@
       "action": "Independent reviewer recheck r1",
       "releaseId": "r1",
       "transaction": "0x5075af4f7a8ffdca9053a277ea61d6df643d4a68cf806540c8ad1ff5a171bfa6",
-      "observedStatus": "SUBMITTED",
+      "observedStatus": "APPROVED revision 2 · FINALIZED",
       "networkStatus": "FINALIZED",
       "executionResults": [
         "SUCCESS"
@@ -373,6 +373,42 @@
         "0x3E5ee2507cc167C9925Bf10c67D7986581112024": "agree",
         "0x76c25AFC12c75485703cCFfd0083AA6201455B25": "agree",
         "0xec2Fb79cd12255Eb34886CEd7332f27B98DEe658": "idle"
+      }
+    },
+    {
+      "action": "Finalize r1",
+      "releaseId": "r1",
+      "transaction": "0xd70fa29d5c5e992543bee43b215df6e302fb37168fd87d60cda81705d263ec40",
+      "observedStatus": "FINALIZED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x3D83ab507785b95ca5C208bEc80CCe3D5ca98100": "idle",
+        "0x6737ca1d6BDF8b7C4f19143E2D55581Ca64eb7C3": "idle",
+        "0x76c25AFC12c75485703cCFfd0083AA6201455B25": "agree",
+        "0x90402341F0B0e97b23023c0a87de957FB7148E0F": "agree",
+        "0xE6BD8050758CB15fC88387223E31Ae2708B119dC": "agree"
+      }
+    },
+    {
+      "action": "Finalize r2",
+      "releaseId": "r2",
+      "transaction": "0x735a00b834ac02a24a30415d80a314bb5461b51adbcb1fdbb15031088ccfae89",
+      "observedStatus": "ACCEPTED",
+      "networkStatus": "FINALIZED",
+      "executionResults": [
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "votes": {
+        "0x14402D49f317CE1a2F35BAE01b1804A2A9703dCb": "agree",
+        "0x3D83ab507785b95ca5C208bEc80CCe3D5ca98100": "agree",
+        "0x6737ca1d6BDF8b7C4f19143E2D55581Ca64eb7C3": "idle",
+        "0xBBb165E4c9d73a1493D363280f7067Cd07891dBE": "idle",
+        "0xE6BD8050758CB15fC88387223E31Ae2708B119dC": "agree"
       }
     }
   ]

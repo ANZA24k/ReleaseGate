@@ -6,7 +6,9 @@ ReleaseGate is an evidence-bound software release approval protocol built around
 
 ## Verification status
 
-The contract is **finalized on Studionet, chain ID 61999**, at [`0x8E28e9bb998A1E0158EF49C0d5151d8136F16130`](https://explorer-studio.genlayer.com/address/0x8E28e9bb998A1E0158EF49C0d5151d8136F16130). Deployed source matches the committed contract byte for byte. The real consensus pilot recorded **APPROVED** for the compliant synthetic candidate and **BLOCKED** for the candidate with an unresolved cross-tenant failure. See the machine-readable [deployment record](deployment.studionet.json) and [verification evidence](docs/VERIFICATION.md). Website publication and review-window finalization are being completed.
+**Public reviewer portal:** [ReleaseGate](https://releasegate-review-ledger.ansaf1st34.chatgpt.site/).
+
+The contract is **finalized on Studionet, chain ID 61999**, at [`0x8E28e9bb998A1E0158EF49C0d5151d8136F16130`](https://explorer-studio.genlayer.com/address/0x8E28e9bb998A1E0158EF49C0d5151d8136F16130), [deployment transaction](https://explorer-studio.genlayer.com/tx/0x6b7868004deee62b42edfdf813564588280caa2f0e4675009b3951f82fdf2659). Deployed source matches the committed contract byte for byte. The real consensus pilot recorded **APPROVED** for the compliant synthetic candidate and **BLOCKED** for the candidate with an unresolved cross-tenant failure. A second-account recheck appended APPROVED revision 2 while preserving revision 1. See the machine-readable [deployment record](deployment.studionet.json) and [verification evidence](docs/VERIFICATION.md). Both application review windows are finalized.
 
 Local direct tests use mocked web and model responses. Synthetic public fixtures describe invented scenarios and do not claim executed product tests or a security audit.
 

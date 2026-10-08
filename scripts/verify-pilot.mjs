@@ -28,6 +28,20 @@ for (const item of [{action:'Deployment', transaction:deployment.deploymentTx}, 
     executionResults:receipts.filter(r => r.execution_result === 'SUCCESS').map(r => r.execution_result),
     votes:tx.consensus_data?.votes || {}});
 }
+if (transactions.some(t => t.networkStatus !== 'FINALIZED' || t.executionResults.length === 0)) {
+  throw new Error('A recorded transaction is not finalized with successful execution');
+}
+const approved = releases.find(r => r.release.release_id === 'r1');
+const blocked = releases.find(r => r.release.release_id === 'r2');
+if (approved?.release.status !== 'APPROVED' || approved.history.length !== 2 ||
+    approved.history[0].kind !== 'INITIAL' || approved.history[1].kind !== 'REVIEWER_RECHECK' ||
+    approved.history[1].actor.toLowerCase() === project.owner.toLowerCase() ||
+    blocked?.release.status !== 'BLOCKED' || blocked.history[0]?.criteria.find(c => c.id === 'auth')?.outcome !== 'FAIL') {
+  throw new Error('Pilot outcomes or append-only independent recheck differ from recorded expectations');
+}
+if (process.argv.includes('--require-closed') && releases.some(r => !r.release.finalized)) {
+  throw new Error('Application review window is not finalized');
+}
 const result = {observedAt:new Date().toISOString(), network:'studionet', chainId:61999,
   contractAddress:deployment.contractAddress, sourceMatches:true,
   sourceSha256:createHash('sha256').update(source).digest('hex'), project, releases, transactions};
