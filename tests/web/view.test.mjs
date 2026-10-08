@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {escapeHtml, deploymentReady, badge, safeEvidenceUrl} from '../../web/view.mjs';
+test('untrusted evidence cannot inject HTML',()=>assert.equal(escapeHtml('<script>"&'), '&lt;script&gt;&quot;&amp;'));
+test('missing deployment is not live',()=>assert.equal(deploymentReady({deploymentStatus:'NOT_DEPLOYED'}), false));
+test('address alone is not finalized proof',()=>assert.equal(deploymentReady({contractAddress:'0x'+'a'.repeat(40)}), false));
+test('complete verified deployment is eligible for reads',()=>assert.equal(deploymentReady({deploymentStatus:'FINALIZED',contractAddress:'0x'+'a'.repeat(40),deploymentTx:'0x'+'b'.repeat(64)}), true));
+test('unknown verdict cannot masquerade as approval',()=>assert.match(badge('<img>'), /UNVERIFIED/));
+test('pinned raw evidence accepted',()=>assert.equal(safeEvidenceUrl('https://raw.githubusercontent.com/ANZA24k/ReleaseGate/'+'a'.repeat(40)+'/fixtures/evidence.md'), true));
+test('javascript links rejected',()=>assert.equal(safeEvidenceUrl('javascript:alert(1)'), false));
+test('mutable and traversal evidence links rejected',()=>{assert.equal(safeEvidenceUrl('https://raw.githubusercontent.com/ANZA24k/ReleaseGate/main/test.md'),false);assert.equal(safeEvidenceUrl('https://raw.githubusercontent.com/ANZA24k/ReleaseGate/'+'a'.repeat(40)+'/../test.md'),false)});

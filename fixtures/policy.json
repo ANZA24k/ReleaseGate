@@ -1,0 +1,8 @@
+{
+  "criteria": [
+    {"id":"auth","name":"Authentication regressions","requirement":"Synthetic test evidence must explicitly demonstrate that expired sessions and cross-tenant access are rejected, with no failing tests in either case.","mandatory":true,"weight":1},
+    {"id":"migration","name":"Breaking database migration","requirement":"Synthetic migration instructions must explain the users.tenant_id NOT NULL change, a backup step, backfill before applying the constraint, and a rollback procedure.","mandatory":true,"weight":1},
+    {"id":"compatibility","name":"Breaking API documentation","requirement":"Synthetic release notes must identify the removal of /v1/session, its /v2/session replacement, and the minimum compatible client version 2.0.","mandatory":true,"weight":1}
+  ],
+  "optional_threshold_bps": 0
+}

@@ -1,0 +1,7 @@
+{
+  "network": "studionet",
+  "chainId": 61999,
+  "rpcUrl": "https://studio.genlayer.com/api",
+  "deploymentStatus": "NOT_DEPLOYED",
+  "pilot": []
+}

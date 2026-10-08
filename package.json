@@ -1,0 +1,6 @@
+{
+  "name":"releasegate-reviewer", "version":"1.0.0", "private":true, "type":"module",
+  "scripts":{"dev":"vite --host 0.0.0.0","build":"tsc --noEmit && vite build","typecheck":"tsc --noEmit","test":"node --test tests/web/*.test.mjs","preview":"vite preview --host 0.0.0.0"},
+  "dependencies":{"genlayer-js":"1.1.8"},
+  "devDependencies":{"typescript":"7.0.2","vite":"8.3.3"}
+}
