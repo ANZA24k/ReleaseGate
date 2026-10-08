@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repository": "ANZA24k/ReleaseGate",
+  "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+  "version": "demo-blocked-1",
+  "evidence": [
+    {
+      "label": "blocked",
+      "type": "synthetic-release-review",
+      "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/blocked.md",
+      "sha256": "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c",
+      "description": "Synthetic demonstration fixture; not a production audit or executed product test."
+    }
+  ]
+}

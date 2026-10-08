@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repository": "ANZA24k/ReleaseGate",
+  "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+  "version": "demo-approved-1",
+  "evidence": [
+    {
+      "label": "approved",
+      "type": "synthetic-release-review",
+      "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/approved.md",
+      "sha256": "6b848ce21c2ec06aae33360e0c0944d15a7dadbfa717631fab5205bd079f9e2e",
+      "description": "Synthetic demonstration fixture; not a production audit or executed product test."
+    }
+  ]
+}
