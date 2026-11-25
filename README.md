@@ -16,6 +16,18 @@ Local direct tests use mocked web and model responses. Synthetic public fixtures
 
 “Does the migration guide clearly explain a breaking database change and recovery procedure?” cannot reliably be reduced to a hash check or keyword search. GenLayer evaluates that semantic requirement using independently retrieved evidence and validator agreement. Ordinary Python enforces ownership, deadlines, resource bounds, cryptographic identity, thresholds and append-only history.
 
+## CI release approval gate — milestone v1
+
+Release pipelines can now require a finalized approval for the exact project,
+owner, repository, commit, version and locked policy. The new CLI and reusable
+GitHub action verify deployed source identity, read finalized state, validate
+revision history, recompute policy hashes and criterion scores, and block on
+mismatches or unavailable state. Approval/denial receipts include a canonical
+payload hash; offline verification checks integrity only.
+
+See the [integration guide](docs/CI-GATE.md), [GitHub action](action.yml), and
+[milestone delta and live evidence](docs/milestone-v1.md). No wallet is required.
+
 ## Run checks
 
 Python **3.12+** and Node **22.12+**:

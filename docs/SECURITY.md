@@ -1,5 +1,16 @@
 # Security and failure model
 
+## CI consumer integration (milestone v1)
+
+The CLI and composite GitHub action pin the contract/source, project owner,
+repository, commit, version and policy; use finalized reads; validate revision
+history; and recompute deterministic outcomes. They trust Studionet RPC and local
+time, without authenticating original reports or re-running consensus. Pins must
+come from protected configuration. Receipts are unsigned observations with an
+integrity checksum, not chain proofs. Offline audit always returns
+`authorized:false`. Deployment must depend on a successful **live** gate exit.
+See [CI-GATE.md](CI-GATE.md) for timeout, size and snapshot limits.
+
 ## Evidence commitments
 
 The initial manifest and every supplemental manifest are SHA-256 committed. Digests use the SDK response's exact bytes before UTF-8 decoding. Schema, repository, target commit and version must match the candidate. Evidence can be stored in a later artifact commit than its target software commit; the manifest explicitly binds the target identity. This permits post-build reports without a circular Git commit commitment.

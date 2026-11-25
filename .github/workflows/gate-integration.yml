@@ -1,0 +1,54 @@
+name: Finalized gate integration
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - action.yml
+      - scripts/release-gate.mjs
+      - scripts/lib/**
+      - .github/workflows/gate-integration.yml
+permissions:
+  contents: read
+jobs:
+  live-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Existing compliant pilot must pass
+        id: approval
+        uses: ./
+        with:
+          contract: '0x8E28e9bb998A1E0158EF49C0d5151d8136F16130'
+          owner: '0x5C0393F259afa96aDc82AB666B3b2F2152327533'
+          project: p1
+          release: r1
+          repository: ANZA24k/ReleaseGate
+          commit: 9b30f7ad38de530112b9146036d5e73df2633995
+          version: demo-approved-1
+          policy-sha256: 31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134
+      - name: Retain approved observation
+        run: cp "$RUNNER_TEMP/releasegate-receipt.json" "$RUNNER_TEMP/releasegate-approved.json"
+      - name: Existing blocked pilot must be denied
+        shell: bash
+        run: |
+          set +e
+          npm run gate -- \
+            --contract 0x8E28e9bb998A1E0158EF49C0d5151d8136F16130 \
+            --owner 0x5C0393F259afa96aDc82AB666B3b2F2152327533 \
+            --project p1 --release r2 --repository ANZA24k/ReleaseGate \
+            --commit 9b30f7ad38de530112b9146036d5e73df2633995 \
+            --version demo-blocked-1 \
+            --policy-sha256 31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134 \
+            --output "$RUNNER_TEMP/releasegate-blocked.json"
+          code=$?
+          set -e
+          test "$code" -eq 1
+          node --input-type=module -e 'import fs from "node:fs"; const r=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+"/releasegate-blocked.json")); if(r.payload.result.code!=="RELEASE_NOT_APPROVED")process.exit(1)'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: releasegate-live-observations
+          path: ${{ runner.temp }}/releasegate-*.json
+          if-no-files-found: error

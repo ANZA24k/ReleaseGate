@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-11-25T06:00:25.392Z",
+  "baseline": "3f0657274df1170546ece76b9501f4e3303a7f21",
+  "node": "v24.22.3",
+  "checks": {
+    "javascript": {
+      "command": "npm test",
+      "passed": 60,
+      "originalPortalTests": 8,
+      "newGateTests": 52,
+      "failed": 0
+    },
+    "pythonDirect": {
+      "command": "python -m pytest tests/direct -q",
+      "passed": 76,
+      "failed": 0
+    },
+    "contractParity": {
+      "aggregationCombinations": 486,
+      "unicodeCanonicalHash": true
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true,
+      "warning": "Existing browser bundle exceeds 500 kB warning threshold"
+    },
+    "genvm": {
+      "command": "genvm-lint check contracts/release_gate.py --json",
+      "passed": true,
+      "methods": 12,
+      "warning": "I200: newer dependency runner available; original stable runner retained"
+    },
+    "receipts": {
+      "command": "npm run receipt:verify -- --file <each-receipt>",
+      "passed": 3,
+      "authorizesOffline": false
+    }
+  },
+  "live": [
+    {
+      "path": "docs/milestone-v1/live-approved.json",
+      "observedAt": "2026-11-25T05:57:02.469Z",
+      "exitCode": 0,
+      "result": {
+        "authorized": true,
+        "code": "FINALIZED_APPROVAL",
+        "revision": 2,
+        "status": "APPROVED"
+      },
+      "sha256": "223af41e0331fd880f4568414fa08e7dffa461d93f8d02bd2bd44f9a123d2166"
+    },
+    {
+      "path": "docs/milestone-v1/live-blocked.json",
+      "observedAt": "2026-11-25T05:56:33.244Z",
+      "exitCode": 1,
+      "result": {
+        "authorized": false,
+        "code": "RELEASE_NOT_APPROVED"
+      },
+      "sha256": "676cb9c41ac9079bf51d7df1cd14404c6d0bed90688836bb951bda246420bffc"
+    },
+    {
+      "path": "docs/milestone-v1/live-wrong-commit.json",
+      "observedAt": "2026-11-25T05:58:23.535Z",
+      "exitCode": 1,
+      "result": {
+        "authorized": false,
+        "code": "CANDIDATE_MISMATCH"
+      },
+      "sha256": "7e43c94ecc398c25b2b3ceec95d4dc609163ce52e6813a626f796d3263799fbd"
+    }
+  ],
+  "scope": "New CI integration using existing synthetic pilot; no new on-chain writes or production security claims."
+}

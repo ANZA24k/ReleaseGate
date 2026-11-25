@@ -1,5 +1,19 @@
 # Testing
 
+## Milestone v1 CI gate
+
+`npm test` now runs the original 8 portal tests plus 52 gate/CLI tests. These include
+mocked finalized reads, source mismatch, timeout, wrong candidate pins, policy
+tampering, invalid history, reviewer roles, repackaged evidence, stale receipt removal
+and offline receipt tampering. One parity test covers 486 aggregation combinations
+against the actual Python contract function; another checks Unicode canonical hashes.
+The tests use Python 3.12+ for parity but the deployed gate runtime needs only Node.
+
+New live read receipts and validation results are linked in [milestone-v1.md](milestone-v1.md).
+The separate `Finalized gate integration` Actions workflow runs approval/denial checks
+against the pre-existing synthetic Studionet pilot. Availability failures are real
+failures; there is no mock or non-final fallback in that workflow.
+
 The automated suite invokes the actual contract through `genlayer-test` direct mode using a pinned GenVM SDK. Web and LLM calls are mocked. It covers authorization, locked policy, duplicate identities, commit/URL validation, exact deadline boundaries, HTTP and size failures, hash mismatch, malformed manifests and models, synthetic prompt injection, deterministic outcomes, validator refetching/disagreement, history, quota and limits.
 
 ```sh

@@ -1,0 +1,137 @@
+{
+  "schema": "releasegate-ci-receipt/v1",
+  "payload": {
+    "network": "studionet",
+    "chainId": 61999,
+    "readMode": "LATEST_FINAL",
+    "sourceSha256": "682e6ca645a9bda8aa7ea445319a12742fa9608fb942021741f2c9a7f92aa99a",
+    "observedAt": "2026-11-25T05:56:33.244Z",
+    "request": {
+      "contract": "0x8E28e9bb998A1E0158EF49C0d5151d8136F16130",
+      "owner": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+      "project": "p1",
+      "release": "r2",
+      "repository": "ANZA24k/ReleaseGate",
+      "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+      "version": "demo-blocked-1",
+      "policySha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134"
+    },
+    "project": {
+      "active": true,
+      "created_at": 1791435526,
+      "name": "ReleaseGate synthetic pilot",
+      "owner": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+      "policy": {
+        "criteria": [
+          {
+            "id": "auth",
+            "mandatory": true,
+            "name": "Authentication regressions",
+            "requirement": "Synthetic test evidence must explicitly demonstrate that expired sessions and cross-tenant access are rejected, with no failing tests in either case.",
+            "weight": 1
+          },
+          {
+            "id": "migration",
+            "mandatory": true,
+            "name": "Breaking database migration",
+            "requirement": "Synthetic migration instructions must explain the users.tenant_id NOT NULL change, a backup step, backfill before applying the constraint, and a rollback procedure.",
+            "weight": 1
+          },
+          {
+            "id": "compatibility",
+            "mandatory": true,
+            "name": "Breaking API documentation",
+            "requirement": "Synthetic release notes must identify the removal of /v1/session, its /v2/session replacement, and the minimum compatible client version 2.0.",
+            "weight": 1
+          }
+        ],
+        "optional_threshold_bps": 0
+      },
+      "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+      "project_id": "p1",
+      "release_ids": [
+        "r1",
+        "r2"
+      ],
+      "repository": "ANZA24k/ReleaseGate"
+    },
+    "release": {
+      "commit": "9b30f7ad38de530112b9146036d5e73df2633995",
+      "created_at": 1791435724,
+      "creator": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+      "finalized": true,
+      "known_evidence_hashes": [
+        "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c"
+      ],
+      "latest_revision": 1,
+      "manifests": [
+        {
+          "sha256": "e44a9c78e61ce084834cbc136c2733b6b2c459644fc4a69350e53826fa45272a",
+          "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/96816ae9c1effd87e56210b27e42b166455b5163/fixtures/manifests/blocked.json"
+        }
+      ],
+      "owner_recheck": false,
+      "project_id": "p1",
+      "release_id": "r2",
+      "repository": "ANZA24k/ReleaseGate",
+      "review_deadline": 1791436700,
+      "reviewer_recheck": false,
+      "status": "BLOCKED",
+      "version": "demo-blocked-1"
+    },
+    "history": [
+      {
+        "actor": "0x5C0393F259afa96aDc82AB666B3b2F2152327533",
+        "criteria": [
+          {
+            "evidence_labels": [
+              "blocked"
+            ],
+            "id": "auth",
+            "outcome": "FAIL",
+            "reason": "Evidence explicitly states AUTH-TENANT FAIL: a tenant A session received tenant B data with HTTP 200. Cross-tenant access was not rejected. One failing regression is unresolved. Policy requires no failing tests in either case."
+          },
+          {
+            "evidence_labels": [
+              "blocked"
+            ],
+            "id": "migration",
+            "outcome": "PASS",
+            "reason": "Evidence explains the users.tenant_id NOT NULL change, a backup step, backfill before applying the constraint, and a rollback procedure (stop writes, remove constraint, restore backup). All four required elements are present."
+          },
+          {
+            "evidence_labels": [
+              "blocked"
+            ],
+            "id": "compatibility",
+            "outcome": "PASS",
+            "reason": "Evidence states /v1/session is removed, /v2/session replaces it, and minimum compatible client version is 2.0. All three required elements are explicitly identified."
+          }
+        ],
+        "evaluated_evidence": [
+          {
+            "label": "blocked",
+            "sha256": "9978fa8da393d7121551f798672af2c16af449a93474794ec140be081bef215c",
+            "url": "https://raw.githubusercontent.com/ANZA24k/ReleaseGate/9b30f7ad38de530112b9146036d5e73df2633995/fixtures/evidence/blocked.md"
+          }
+        ],
+        "evidence_status": "VERIFIED",
+        "kind": "INITIAL",
+        "manifest_hashes": [
+          "e44a9c78e61ce084834cbc136c2733b6b2c459644fc4a69350e53826fa45272a"
+        ],
+        "optional_score_bps": 10000,
+        "policy_sha256": "31adf845df31f1ae9166ba2a8f247655afa9ef5c4cca92a93912aa4f285e4134",
+        "revision": 1,
+        "status": "BLOCKED",
+        "supersedes_revision": 0,
+        "timestamp": 1791435809
+      }
+    ],
+    "result": {
+      "authorized": false,
+      "code": "RELEASE_NOT_APPROVED"
+    }
+  },
+  "sha256": "676cb9c41ac9079bf51d7df1cd14404c6d0bed90688836bb951bda246420bffc"
+}

@@ -1,0 +1,63 @@
+name: ReleaseGate finalized approval
+description: Require an exact candidate approval from the pinned ReleaseGate Studionet contract
+inputs:
+  contract:
+    description: Trusted deployed ReleaseGate contract address
+    required: true
+  owner:
+    description: Trusted project owner address
+    required: true
+  project:
+    description: Contract project ID
+    required: true
+  release:
+    description: Contract release ID
+    required: true
+  repository:
+    description: Exact owner/repository registered on chain
+    required: true
+  commit:
+    description: Full 40-character candidate commit SHA (use the actual deployment SHA)
+    required: true
+  version:
+    description: Exact registered release version
+    required: true
+  policy-sha256:
+    description: Independently approved locked policy hash
+    required: true
+outputs:
+  receipt:
+    description: Absolute JSON receipt path (available for evaluated approvals and denials)
+    value: ${{ steps.check.outputs.receipt }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+    - name: Install pinned gate dependencies
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: npm ci --ignore-scripts
+    - name: Check finalized candidate
+      id: check
+      shell: bash
+      env:
+        GATE_PATH: ${{ github.action_path }}
+        GATE_CONTRACT: ${{ inputs.contract }}
+        GATE_OWNER: ${{ inputs.owner }}
+        GATE_PROJECT: ${{ inputs.project }}
+        GATE_RELEASE: ${{ inputs.release }}
+        GATE_REPOSITORY: ${{ inputs.repository }}
+        GATE_COMMIT: ${{ inputs.commit }}
+        GATE_VERSION: ${{ inputs.version }}
+        GATE_POLICY: ${{ inputs.policy-sha256 }}
+      run: |
+        receipt="$RUNNER_TEMP/releasegate-receipt.json"
+        echo "receipt=$receipt" >> "$GITHUB_OUTPUT"
+        node "$GATE_PATH/scripts/release-gate.mjs" \
+          --contract "$GATE_CONTRACT" --owner "$GATE_OWNER" \
+          --project "$GATE_PROJECT" --release "$GATE_RELEASE" \
+          --repository "$GATE_REPOSITORY" --commit "$GATE_COMMIT" \
+          --version "$GATE_VERSION" --policy-sha256 "$GATE_POLICY" \
+          --output "$receipt"
