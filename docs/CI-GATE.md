@@ -34,8 +34,8 @@ pins the contract address and exact deployed source hash.
 
 ## GitHub Actions
 
-Pin the composite action to a **reviewed full commit SHA**, replacing
-`REVIEWED_FULL_COMMIT_SHA`. Protect workflow/configuration edits and downstream
+The example pins the composite action to milestone implementation commit
+`245a70a9e082e58c1d5df70cfd202f877b963e9e`. Review that full commit before adoption. Protect workflow/configuration edits and downstream
 deployment environments. Do not use `continue-on-error` on the gate.
 
 ```yaml
@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: gate
-        uses: ANZA24k/ReleaseGate@REVIEWED_FULL_COMMIT_SHA
+        uses: ANZA24k/ReleaseGate@245a70a9e082e58c1d5df70cfd202f877b963e9e
         with:
           contract: '0x8E28e9bb998A1E0158EF49C0d5151d8136F16130'
           owner: ${{ vars.RELEASEGATE_OWNER }}

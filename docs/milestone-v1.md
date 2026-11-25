@@ -53,3 +53,14 @@ The gate trusts Studionet RPC and local time. Receipt hashes establish internal
 integrity only; offline checking never authorizes a deployment. The integration
 does not re-run AI consensus or authenticate original reports. The existing portal
 is unchanged; the action and CLI are the new functionality.
+
+## Published implementation and CI evidence
+
+- [Implementation commit](https://github.com/ANZA24k/ReleaseGate/commit/245a70a9e082e58c1d5df70cfd202f877b963e9e)
+- [Exact baseline-to-implementation comparison](https://github.com/ANZA24k/ReleaseGate/compare/3f0657274df1170546ece76b9501f4e3303a7f21...245a70a9e082e58c1d5df70cfd202f877b963e9e)
+- [Live GitHub action integration — passed](https://github.com/ANZA24k/ReleaseGate/actions/runs/45557592075), with downloadable `releasegate-live-observations` artifact.
+- [Contract and reviewer verification — passed](https://github.com/ANZA24k/ReleaseGate/actions/runs/45557592070).
+
+The workflow tested the composite action itself against the live approved candidate
+and checked the blocked candidate's exit code and rejection reason. The 136 local
+automated tests also passed on GitHub, including contract lint/schema and portal build.

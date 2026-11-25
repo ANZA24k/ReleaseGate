@@ -70,5 +70,25 @@
       "sha256": "7e43c94ecc398c25b2b3ceec95d4dc609163ce52e6813a626f796d3263799fbd"
     }
   ],
-  "scope": "New CI integration using existing synthetic pilot; no new on-chain writes or production security claims."
+  "scope": "New CI integration using existing synthetic pilot; no new on-chain writes or production security claims.",
+  "githubActions": [
+    {
+      "name": "Finalized gate integration",
+      "commit": "245a70a9e082e58c1d5df70cfd202f877b963e9e",
+      "conclusion": "success",
+      "url": "https://github.com/ANZA24k/ReleaseGate/actions/runs/45557592075",
+      "artifact": "releasegate-live-observations",
+      "artifactId": 14996207688
+    },
+    {
+      "name": "ReleaseGate verification",
+      "commit": "245a70a9e082e58c1d5df70cfd202f877b963e9e",
+      "conclusion": "success",
+      "url": "https://github.com/ANZA24k/ReleaseGate/actions/runs/45557592070",
+      "jobs": [
+        "reviewer",
+        "contract"
+      ]
+    }
+  ]
 }
